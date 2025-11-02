@@ -1,0 +1,77 @@
+D:\IoT\lab1_task1\x64\Debug>mpiexec -n 6 lab1_task1.exe
+Enter number of points: 10000
+
+RESULTS
+Estimated PI value: 3.1472000000
+True PI value:      3.1415926536
+
+Parallel program time:     0.000378 seconds
+Linear program time:     0.000761 seconds
+
+Speed-up:     2.016689
+Efficiency:     0.336115
+
+D:\IoT\lab1_task1\x64\Debug>mpiexec -n 6 lab1_task1.exe
+Enter number of points: 100000
+
+RESULTS
+Estimated PI value: 3.1352400000
+True PI value:      3.1415926536
+
+Parallel program time:     0.001610 seconds
+Linear program time:     0.007846 seconds
+
+Speed-up:     4.871779
+Efficiency:     0.811963
+
+D:\IoT\lab1_task1\x64\Debug>mpiexec -n 6 lab1_task1.exe
+Enter number of points: 1000000
+
+RESULTS
+Estimated PI value: 3.1408720000
+True PI value:      3.1415926536
+
+Parallel program time:     0.013400 seconds
+Linear program time:     0.077414 seconds
+
+Speed-up:     5.777042
+Efficiency:     0.962840
+
+D:\IoT\lab1_task1\x64\Debug>mpiexec -n 6 lab1_task1.exe
+Enter number of points: 10000000
+
+RESULTS
+Estimated PI value: 3.1419120000
+True PI value:      3.1415926536
+
+Parallel program time:     0.132661 seconds
+Linear program time:     0.762727 seconds
+
+Speed-up:     5.749459
+Efficiency:     0.958243
+
+D:\IoT\lab1_task1\x64\Debug>mpiexec -n 6 lab1_task1.exe
+Enter number of points: 100000000
+
+RESULTS
+Estimated PI value: 3.1414813200
+True PI value:      3.1415926536
+
+Parallel program time:     1.343827 seconds
+Linear program time:     7.701200 seconds
+
+Speed-up:     5.730796
+Efficiency:     0.955133
+
+D:\IoT\lab1_task1\x64\Debug>mpiexec -n 6 lab1_task1.exe
+Enter number of points: 1000000000
+
+RESULTS
+Estimated PI value: 3.1414076200
+True PI value:      3.1415926536
+
+Parallel program time:     14.177156 seconds
+Linear program time:     76.645196 seconds
+
+Speed-up:     5.406246
+Efficiency:     0.901041

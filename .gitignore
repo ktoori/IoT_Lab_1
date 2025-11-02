@@ -1,0 +1,85 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Visual Studio files
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio folders
+.vs/
+Debug/
+Release/
+x64/
+x86/
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Build results
+[Dd]ebugPublic/
+[Rr]eleases/
+[Xx]64/
+[Xx]86/
+[Bb]uild/
+[Ll]og/
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# Temporary files
+*.tmp
+*.log
+*.bak
+*.swp
+*.swo
+
+# But KEEP these result files
+!results/*.txt
+!results/graphs/*.png
+!results/graphs/*.jpg
+!results/graphs/*.pdf
