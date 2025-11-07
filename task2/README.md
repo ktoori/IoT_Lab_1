@@ -10,9 +10,27 @@
 
 Перед вычислениями все процессы синхронизируются через MPI_Barrier(), после чего начинается измерение времени. Каждый процесс выполняет функцию multRows(), которая вычисляет скалярные произведения для локальных строк. После завершения вычислений собираются результаты через MPI_Gatherv() в процесс 0. Максимальное время получается через MPI_Reduce() с операцией MPI_MAX.
 ### Оценка времени работы
+По оси X - количество процессов, по оси Y - время выполнения в миллисекундах.
 <img width="797" height="396" alt="image_2025-11-07_00-23-26" src="https://github.com/user-attachments/assets/d862e74d-a119-40f9-a1db-634c4ff51b08" />
 <img width="798" height="394" alt="image_2025-11-07_00-25-22" src="https://github.com/user-attachments/assets/d7a65bf5-296b-4e49-9acd-835af855f694" />
 <img width="801" height="393" alt="image_2025-11-07_00-28-13" src="https://github.com/user-attachments/assets/68e93c50-7bdf-45d1-aebe-65af0833c117" />
+
+### Оценка ускорения
+По оси X - количество процессов, по оси Y - ускорение.
+<img width="800" height="394" alt="image_2025-11-07_13-04-02" src="https://github.com/user-attachments/assets/8e59a502-80d3-4479-9b25-e2e3e1c75358" />
+<img width="801" height="396" alt="image_2025-11-07_13-07-02" src="https://github.com/user-attachments/assets/4185164e-927d-421f-b0df-1761a8482fb1" />
+<img width="796" height="396" alt="image_2025-11-07_13-09-50" src="https://github.com/user-attachments/assets/4a56b3c6-7a49-4e44-a764-3ffca99df956" />
+
+### Оценка эффективности
+По оси X - количество процессов, по оси Y - эффективность.
+<img width="798" height="395" alt="image_2025-11-07_13-26-23" src="https://github.com/user-attachments/assets/a5ae7ac5-855f-4e7c-8f18-fc0c38b3f545" />
+<img width="797" height="389" alt="image_2025-11-07_13-28-20" src="https://github.com/user-attachments/assets/4996e82d-42b3-454c-8b97-5aacf8417c69" />
+<img width="794" height="391" alt="image_2025-11-07_13-30-16" src="https://github.com/user-attachments/assets/cb4da551-be10-4b8e-b6b2-aa399f3dc23f" />
+
+### Выводы
+1. При увеличении количества процессов для матрицы малого размера наблюдается рост времени выполнения и снижение эффективности.
+2. Для матриц среднего и большого размера алгоритм показывает приемлемую эффективность, достигая ускорения в 3-5 раз при использовании 4-6 процессов.
+3. После 6-7 процессов добавление новых вычислительных ресурсов практически не даёт прироста производительности, а эффективность их использования падает. Это может объясняться тем, что при увеличении числа процессов объём передаваемых данных и количество коммуникационных операций растут быстрее, чем уменьшается объем вычислений на один процесс.
 
 ## Разбиение по столбцам
 ### Принцип работы
@@ -24,10 +42,27 @@
 
 После синхронизации каждый процесс выполняет функцию multCols(), обрабатывая только свой диапазон столбцов исходной (полной) матрицы. Результаты вычисляются как частичные векторы. Затем все частичные результаты суммируются в процессе 0 через MPI_Reduce() с операцией MPI_SUM. Максимальное время вычисляется аналогично.
 ### Оценка времени работы
-<img width="797" height="396" alt="image_2025-11-07_00-30-15" src="https://github.com/user-attachments/assets/45e4b59b-22df-4a75-a311-a4b8e7017bce" />
-<img width="796" height="392" alt="image_2025-11-07_00-33-10" src="https://github.com/user-attachments/assets/36a0e3af-10e1-4525-96e8-8a4bff64256d" />
-<img width="805" height="388" alt="image_2025-11-07_00-40-46" src="https://github.com/user-attachments/assets/7ff13443-0aff-42ea-a2a3-40f21035a3be" />
+По оси X - количество процессов, по оси Y - время выполнения в миллисекундах.
+<img width="799" height="393" alt="image" src="https://github.com/user-attachments/assets/ad8c3612-f2cf-4602-9865-ed88194f3839" />
+<img width="797" height="392" alt="image" src="https://github.com/user-attachments/assets/0e763b30-24cd-4bbb-bd81-013565ca39ee" />
+<img width="800" height="391" alt="image" src="https://github.com/user-attachments/assets/88c95868-7c8d-4339-9fe4-bc737912f810" />
 
+### Оценка ускорения
+По оси X - количество процессов, по оси Y - ускорение.
+<img width="798" height="395" alt="image_2025-11-07_13-13-15" src="https://github.com/user-attachments/assets/6bc02db0-92fd-4e0b-b914-5090efc4848c" />
+<img width="797" height="391" alt="image_2025-11-07_13-15-15" src="https://github.com/user-attachments/assets/337aa5c7-2266-4cf9-b05e-2124fe03a929" />
+<img width="798" height="389" alt="image_2025-11-07_13-18-32" src="https://github.com/user-attachments/assets/35910a55-93af-4ba1-a164-09668a9b72d0" />
+
+### Оценка эффективности
+По оси X - количество процессов, по оси Y - эффективность.
+<img width="796" height="390" alt="image_2025-11-07_13-33-08" src="https://github.com/user-attachments/assets/bbe3e206-eee7-4933-9d04-f2496fea3237" />
+<img width="796" height="390" alt="image_2025-11-07_13-34-38" src="https://github.com/user-attachments/assets/dbcebf1c-9004-4c7d-b77e-96e3f99c74a1" />
+<img width="797" height="390" alt="image_2025-11-07_13-37-02" src="https://github.com/user-attachments/assets/3c215cf6-0a66-4b29-924e-fba2577d75c1" />
+
+### Выводы
+1. Для матриц малого размера наблюдается хорошее ускорение при увеличении количества процессов до определенной точки, однако при максимальном числе процессов производительность резко падает.
+2. Для матриц среднего и большого размера максимальное ускорение достигается при среднем количестве процессов с высокой эффективностью.
+3. Для всех размеров матриц использование максимального количества процессов приводит к резкому падению эффективности
 
 ## Разбиение по блокам
 ### Принцип работы
@@ -39,8 +74,23 @@
 
 Как и в столбцовом алгоритме, используется MPI_Bcast() для рассылки полной матрицы и вектора. После синхронизации каждый процесс выполняет функцию multBlocks() для своего прямоугольного блока матрицы. Результаты суммируются через MPI_Reduce() с MPI_SUM.
 ### Оценка времени работы
-<img width="800" height="382" alt="image_2025-11-07_00-42-46" src="https://github.com/user-attachments/assets/0f11feaa-8434-4354-a518-f6e0d2bd0d4c" />
+По оси X - количество процессов, по оси Y - время выполнения в миллисекундах.
+<img width="800" height="389" alt="image" src="https://github.com/user-attachments/assets/60d0a408-60f6-47dd-b700-d300fee7be97" />
 <img width="801" height="394" alt="image_2025-11-07_00-44-45" src="https://github.com/user-attachments/assets/b181b100-c1f8-4905-92d7-0d19f8f9b7b1" />
 <img width="801" height="388" alt="image_2025-11-07_00-46-28" src="https://github.com/user-attachments/assets/46088375-53c5-4512-91a6-3c9d61ca7163" />
 
+### Оценка ускорения
+По оси X - количество процессов, по оси Y - ускорение.
+<img width="801" height="385" alt="image_2025-11-07_13-20-24" src="https://github.com/user-attachments/assets/3bcccc01-e97f-49ce-ab9a-371b8402e3df" />
+<img width="802" height="396" alt="image_2025-11-07_13-22-33" src="https://github.com/user-attachments/assets/242d4338-9af2-414d-b301-b6705e1e6143" />
+<img width="797" height="391" alt="image_2025-11-07_13-24-18" src="https://github.com/user-attachments/assets/7842b4f0-17ac-412e-982e-d272fe1fab7e" />
 
+### Оценка эффективности
+По оси X - количество процессов, по оси Y - эффективность.
+<img width="801" height="391" alt="image_2025-11-07_13-41-05" src="https://github.com/user-attachments/assets/5c56a0fc-6ef4-475d-ae91-88e059d73e6c" />
+<img width="798" height="393" alt="image_2025-11-07_13-42-44" src="https://github.com/user-attachments/assets/6629db53-a8cb-4429-b567-5e5ba9080a8e" />
+<img width="801" height="392" alt="image_2025-11-07_13-44-40" src="https://github.com/user-attachments/assets/267ca157-18d0-489f-bd54-27b573c3fcd2" />
+
+### Выводы
+1. При увеличении количества процессов эффективность значительно колеблется, достигая пиков при определенных значениях процессов, но общая тенденция показывает снижение эффективности с ростом числа процессов.
+2. Эффективность алгоритма напрямую зависит от того, является ли количество процессов полным квадратом. На этих точках наблюдаются пики производительности, в то время как использование промежуточных значений приводит к значительному снижению эффективности из-за неоптимального распределения блоков.
